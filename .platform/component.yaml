@@ -1,0 +1,20 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: app-demo-pex
+  description: "app-demo-pex"
+  annotations:
+    github.com/project-slug: veecode-apr/app-demo-pex
+    backstage.io/techdocs-ref: dir:..
+    backstage.io/kubernetes-id: "app-demo-pex"
+    vault.io/secrets-path: "app-demo-pex"
+    grafana/dashboard-selector: "app-demo-pex"
+    grafana/alert-label-selector: "alertname=app-demo-pex"
+    argocd/proxy-url: '/argocd/api'
+    argocd/app-name: "app-demo-pex"
+    kong-manager/service-name: veecode-apr.app-demo-pex-service-0.8080
+    kong-manager/instance: /kong-manager/api
+spec:
+  type: service
+  lifecycle: experimental
+  owner: "group:default/admin"

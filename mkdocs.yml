@@ -1,0 +1,8 @@
+site_name: "app-demo-pex"
+site_description: "app-demo-pex"
+
+nav:
+  - Introduction: index.md
+
+plugins:
+  - techdocs-core

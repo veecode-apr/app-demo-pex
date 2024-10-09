@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-demo-pex 
+spec:
+  selector:
+    matchLabels:
+      app: app-demo-pex
+  template:
+    metadata:
+      labels:
+        app: app-demo-pex
+    spec:
+      containers:
+        - image: okteto.dev/java-gradle-app-demo-pex:1.0.0
+          name: app-demo-pex
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: app-demo-pex
+spec:
+  type: ClusterIP
+  ports:
+    - name: "app-demo-pex"
+      port: 8080
+  selector:
+    app: app-demo-pex
+
+---
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: app-demo-pex
+  annotations:
+    dev.okteto.com/generate-host: app-demo-pex
+spec:
+  rules:
+    - http:
+        paths:
+          - backend:
+              service:
+                name: app-demo-pex
+                port:
+                  number: 8080
+            path: /
+            pathType: ImplementationSpecific

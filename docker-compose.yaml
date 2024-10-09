@@ -1,0 +1,9 @@
+version: '3.8'
+services:
+  app-demo-pex:
+    container_name: app-demo-pex 
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
